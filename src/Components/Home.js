@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import "./Style.css";
-// import ImageGridList from "./Image";
+import ImageGridList from "./Image";
 
 import { browserHistory } from "react-router";
 import "./Style.css";
@@ -13,22 +13,40 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 // import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MenuList from "@material-ui/core/MenuList";
-import Note from './Note';
+import Note from "./Note";
+
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Image: "/static/media/image.87dcdccf.jpg"
+    }
+  }
+
+  updateImage = (tile) => {
+    this.setState({Image:tile.img});
+    console.log(this.state.Image);
+  };
+
+  // onUploadImage = (uploadedImage) => {
+  //   this.setState({uploadedImage});
+  //   console.log(uploadedImage);
+  // };
 
   
-    render() {
-        return (
-            <div>
+  render() {
+    return (
+      <div>
         <div className="split1 left1">
-          {/* <ImageGridList
-            // onPassImage={updateImage}
-            // onUploadImage={onUploadImage}
-          />{" "} */}
+          <ImageGridList
+            onPassImage={this.updateImage}
+            
+            // onUploadImage={this.onUploadImage}
+          />{" "}
         </div>
 
-        <div className="split1 right1" style={{ backgroundColor: "#8A2BE2" }}>
+        <div className="split1 right1" style={{ backgroundColor: "#5233b0" }}>
           <IconButton
             style={{
               color: "#FFFFFF",
@@ -51,19 +69,19 @@ export default class Home extends Component {
             // onClose={handleClose}
             PaperProps={{
               style: {
-                maxHeight:  4.5,
+                maxHeight: 4.5,
                 width: "20ch",
               },
             }}
           >
             <MenuList style={{ backgroundColor: "#FFFFFF" }}>
-              <MenuItem >View All Post</MenuItem>
-              <MenuItem >Logout</MenuItem>
+              <MenuItem>View All Post</MenuItem>
+              <MenuItem>Logout</MenuItem>
             </MenuList>
           </Menu>
-          <Note  />
+          <Note />
         </div>
       </div>
-        )
-    }
+    );
+  }
 }
